@@ -1,6 +1,5 @@
 public class VariablesTheme {
     public static void main(String[] args) {
-
         System.out.println("1. Создание переменных и вывод их значений на консоль");
         char firstLetterCpuName = 'A';
         double cpuFrequency = 3.9;
@@ -29,12 +28,10 @@ public class VariablesTheme {
         System.out.println("Общая стоимость товаров со скидкой - " + priceWithDiscount + " руб\n");
 
         System.out.println("3. Вывод на консоль слова JAVA");
-        String jGreet = "";
-        jGreet += "   J    a  v     v  a   \n";
-        jGreet += "   J   a a  v   v  a a  \n";
-        jGreet += "J  J  aaaaa  V V  aaaaa \n";
-        jGreet += " JJ  a     a  V  a     a\n\n";
-        System.out.println(jGreet);
+        System.out.println("   J    a  v     v  a   ");
+        System.out.println("   J   a a  v   v  a a  ");
+        System.out.println("J  J  aaaaa  V V  aaaaa ");
+        System.out.println(" JJ  a     a  V  a     a\n");
 
         System.out.println("4. Отображение min и max значений числовых типов данных");
         byte maxByte = Byte.MAX_VALUE;
@@ -55,25 +52,33 @@ public class VariablesTheme {
         System.out.println("long после декремента - " + (--maxLong) + "\n");
 
         System.out.println("5. Перестановка значений переменных");
-        float operand1 = 1.1F;
-        float operand2 = 2.2F;
+        double num1 = 1.1;
+        double num2 = 2.2;
         System.out.println("Перестановка значений через третью переменную");
         System.out.println("До перестановки");
-        System.out.println("operand1 = " + operand1 + "; operand2 = " + operand2);
-        float tempVar = operand1;
-        operand1 = operand2;
-        operand2 = tempVar;
+        System.out.println("num1 = " + num1 + "; num2 = " + num2);
+        double temp = num1;
+        num1 = num2;
+        num2 = temp;
         System.out.println("После перестановки");
-        System.out.println("operand1 = " + operand1 + "; operand2 = " + operand2);
+        System.out.println("num1 = " + num1 + "; num2 = " + num2);
         System.out.println("Перестановка значений посредством арифметической операции");
         System.out.println("До перестановки");
-        System.out.println("operand1 = " + operand1 + "; operand2 = " + operand2);
-        operand1 += operand2;
-        operand2 = operand1 - operand2;
-        operand1 -= operand2;
+        System.out.println("num1 = " + num1 + "; num2 = " + num2);
+        num1 += num2;
+        num2 = num1 - num2;
+        num1 -= num2;
         System.out.println("После перестановки");
-        System.out.println("operand1 = " + operand1 + "; operand2 = " + operand2);
-        System.out.println("Побитовые операции не применимы к числовым типам с плавающей точкой\n");
+        System.out.println("num1 = " + num1 + "; num2 = " + num2);
+        System.out.println("Перестановка значений с помощью побитовой операции ^");
+        System.out.println("До перестановки");
+        System.out.println("num1 = " + num1 + "; num2 = " + num2);
+        num1 = (int) num1 ^ (int) num2;
+        num2 = (int) num1 ^ (int) num2;
+        num1 = (int) num1 ^ (int) num2;
+        System.out.println("После перестановки");
+        System.out.println("num1 = " + num1 + "; num2 = " + num2 + "\n");
+
 
         System.out.println("6. Вывод символов и их кодов");
         int codePoint1 = 35;
@@ -81,20 +86,19 @@ public class VariablesTheme {
         int codePoint3 = 64;
         int codePoint4 = 94;
         int codePoint5 = 95;
-
-        System.out.println(codePoint1 + " " + (char)codePoint1);
-        System.out.println(codePoint2 + " " + (char)codePoint2);
-        System.out.println(codePoint3 + " " + (char)codePoint3);
-        System.out.println(codePoint4 + " " + (char)codePoint4);
-        System.out.println(codePoint5 + " " + (char)codePoint5 + "\n");
+        System.out.println(codePoint1 + " " + (char) codePoint1);
+        System.out.println(codePoint2 + " " + (char) codePoint2);
+        System.out.println(codePoint3 + " " + (char) codePoint3);
+        System.out.println(codePoint4 + " " + (char) codePoint4);
+        System.out.println(codePoint5 + " " + (char) codePoint5 + "\n");
 
         System.out.println("7. Произведение и сумма цифр числа");
-        int numb = 345;
-        int hundreds = numb / 100;
-        int dozens = (numb % 100) / 10;
-        int units = numb % 10;
-        System.out.println("Сумма цифр числа " + numb + " = " + (hundreds + dozens + units));
-        System.out.println("Произведение цифр числа " + numb + " = " + (hundreds * dozens * units) + "\n");
+        int srcNum = 345;
+        int hundreds = srcNum / 100;
+        int dozens = (srcNum % 100) / 10;
+        int ones = srcNum % 10;
+        System.out.println("Сумма цифр числа " + srcNum + " = " + (hundreds + dozens + ones));
+        System.out.println("Произведение цифр числа " + srcNum + " = " + (hundreds * dozens * ones) + "\n");
 
         System.out.println("8. Вывод на консоль ASCII-арт Дюка");
         char whitespace = ' ';
@@ -115,20 +119,20 @@ public class VariablesTheme {
                 slash + backslash + underline + underline + backslash + "\n");
         
         System.out.println("9. Отображение количества сотен, десятков и единиц числа");
-        numb = 123;
-        hundreds = numb / 100;
-        dozens = (numb % 100) / 10;
-        units = numb % 10;
-        System.out.println("Число " + numb + " содержит:");
+        srcNum = 123;
+        hundreds = srcNum / 100;
+        dozens = (srcNum % 100) / 10;
+        ones = srcNum % 10;
+        System.out.println("Число " + srcNum + " содержит:");
         System.out.println(hundreds + " сотен");
         System.out.println(dozens + " десятков");
-        System.out.println(units + " единиц\n");
+        System.out.println(ones + " единиц\n");
 
         System.out.println("10. Преобразование секунд");
         int totalSeconds = 86399;
         int hours = totalSeconds / 3600;
         int minutes = totalSeconds % 60;
-        int seconds = totalSeconds - (hours * 3600 + minutes * 60);
+        int seconds = totalSeconds % 3600 % 60; 
         System.out.printf("%02d:%02d:%02d\n", hours, minutes, seconds);
     }
 }
