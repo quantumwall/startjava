@@ -73,9 +73,11 @@ public class VariablesTheme {
         System.out.println("Перестановка значений с помощью побитовой операции ^");
         System.out.println("До перестановки");
         System.out.println("num1 = " + num1 + "; num2 = " + num2);
+        double num1DecimalPart = num1 - (int) num1;
+        double num2DecimalPart = num2 - (int) num2;
         num1 = (int) num1 ^ (int) num2;
-        num2 = (int) num1 ^ (int) num2;
-        num1 = (int) num1 ^ (int) num2;
+        num2 = ((int) num1 ^ (int) num2) + num1DecimalPart;
+        num1 = ((int) num1 ^ (int) num2) + num2DecimalPart;
         System.out.println("После перестановки");
         System.out.println("num1 = " + num1 + "; num2 = " + num2 + "\n");
 
