@@ -160,6 +160,11 @@ public class CyclesTheme {
         }
         System.out.printf("Сумма цифр %d = %d\n", num1, sumOfFirstHalf);
         System.out.printf("Сумма цифр %d = %d\n", num2, sumOfSecondHalf);
+        if(sumOfFirstHalf == sumOfSecondHalf) {
+            System.out.printf("Число %d является \"счастливым\"\n", srcNum);
+        } else {
+            System.out.printf("Число %d не является \"счастливым\"\n", srcNum);
+        }
 
         System.out.println("\n10. Вывод таблицы умножения Пифагора");
         System.out.println("Таблица Пифагора");
