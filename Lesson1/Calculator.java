@@ -2,24 +2,24 @@ public class Calculator {
     public static void main(String[] args) {
         int num1 = 4;
         int num2 = 2;
-        char operator = '^';
+        char sign = '^';
         double result = 0;
-        if(operator == '+') {
+        if(sign == '+') {
             result = num1 + num2;
-        } else if(operator == '-') {
+        } else if(sign == '-') {
             result = num1 - num2;
-        } else if(operator == '*') {
+        } else if(sign == '*') {
             result = num1 * num2;
-        } else if(operator == '/') {
+        } else if(sign == '/') {
             result = num1 / num2;
-        } else if(operator == '^') {
+        } else if(sign == '^') {
             result = 1;
-            for(int count = 0; count < num2; count++) {
+            for(int i = 0; i < num2; i++) {
                 result *= num1;
             }
-        } else if(operator == '%') {
+        } else if(sign == '%') {
             result = num1 % num2;
         }
-        System.out.printf("%d %c %d = %.2f\n", num1, operator, num2, result);
+        System.out.printf("%d %c %d = %.2f\n", num1, sign, num2, result);
     }
 }
