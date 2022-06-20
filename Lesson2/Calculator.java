@@ -2,7 +2,7 @@ public class Calculator {
     
     private int num1;
     private int num2;
-    private String sign;
+    private char sign;
     
     public void setNum1(int num1) {
         this.num1 = num1;
@@ -20,35 +20,31 @@ public class Calculator {
         return num2;
     }
 
-    public void setSign(String sign) {
+    public void setSign(char sign) {
         this.sign = sign;
     }
 
-    public String getSign() {
+    public char getSign() {
         return sign;
     }
 
     public double calculate() {
         double result = 0;
         switch(sign) {
-            case "+":
-                result = num1 + num2;
-                break;
-            case "-":
-                result = num1 - num2;
-                break;
-            case "*":
-                result = num1 * num2;
-                break;
-            case "/":
-                result = num1 / num2;
-                break;
-            case "^":
+            case '+':
+                return num1 + num2;
+            case '-':
+                return num1 - num2;
+            case '*':
+                return num1 * num2;
+            case '/':
+                return num1 / num2;
+            case '^':
                 result = 1;
                 for(int i = 0; i < num2; i++) {
                     result *= num1;
                 }
-                break;
+                return result;
         }
         return result;
     }
