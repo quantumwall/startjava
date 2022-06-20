@@ -7,24 +7,21 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         do {
             System.out.print("Введите первое число: ");
-            int num1 = input.nextInt();
-            calculator.setNum1(num1);
+            calculator.setNum1(input.nextInt());
             input.nextLine();
             System.out.print("Введите знак математической операции: ");
-            char sign = input.nextLine().charAt(0);
-            calculator.setSign(sign);
+            calculator.setSign(input.nextLine().charAt(0));
             System.out.print("Введите второе число: ");
-            int num2 = input.nextInt();
-            calculator.setNum2(num2);
+            calculator.setNum2(input.nextInt());
             input.nextLine();
             double result = calculator.calculate();
             System.out.printf("Результат вычислений: %.1f\n", result);
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
-                repeat = input.nextLine();
-            } while(!repeat.equalsIgnoreCase("yes") &&
-                    !repeat.equalsIgnoreCase("no"));
-        } while(repeat.equalsIgnoreCase("yes"));
+                repeat = input.nextLine().toLowerCase();
+            } while(!repeat.equals("yes") &&
+                    !repeat.equals("no"));
+        } while(repeat.equals("yes"));
         input.close();
     }
 }
