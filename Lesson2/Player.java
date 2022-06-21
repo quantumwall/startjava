@@ -1,30 +1,21 @@
-import java.util.Random;
-
 public class Player {
     
     private String name;
-    private boolean winner;
-    private Random generator;
-
+    private int number;
+    
     public Player(String name) {
         this.name = name;
-        winner = false;
-        generator = new Random();
     }
 
     public String getName() {
         return name;
     }
 
-    public void setWinner(boolean winner) {
-        this.winner = winner;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public boolean getWinner() {
-        return winner;
-    }
-
-    public int guess() {
-        return generator.nextInt(100) + 1;
+    public int getNumber() {
+        return number;
     }
 }

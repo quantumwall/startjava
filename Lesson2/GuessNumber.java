@@ -1,45 +1,43 @@
-import java.util.Random;
+import java.util.Scanner;
 
 public class GuessNumber {
     
     private int targetNumber;
     private Player player1;
     private Player player2;
-    private Random generator;
+    private Scanner input;
      
     public GuessNumber(Player p1, Player p2) {
         player1 = p1;
         player2 = p2;
-        generator = new Random();
-    }
-
-    public int nextTargetNumber() {
-        return generator.nextInt(100) + 1;
+        input = new Scanner(System.in);
     }
 
     public void start() {
-        targetNumber = nextTargetNumber();
-        int answer;
-        player1.setWinner(false);
-        player2.setWinner(false);
+        targetNumber = (int) (Math.random() * 100 + 1);
+        int playerNumber;
         while(true) {
-            answer = player1.guess();
-            if(answer == targetNumber) {
-                player1.setWinner(true);
+            System.out.printf("Ход игрока %s. Введите число: ", player1.getName());
+            player1.setNumber(input.nextInt());
+            playerNumber = player1.getNumber();
+            if(playerNumber == targetNumber) {
+                System.out.printf("%s выиграл\n", player1.getName());
                 break;
-            } else if(answer < targetNumber) {
-                System.out.printf("%s: Число %d меньше загаданного\n", player1.getName(), answer);
+            } else if(playerNumber < targetNumber) {
+                System.out.printf("%s: Число %d меньше загаданного\n", player1.getName(), playerNumber);
             } else {
-                System.out.printf("%s: Число %d больше загаданного\n", player1.getName(), answer);
+                System.out.printf("%s: Число %d больше загаданного\n", player1.getName(), playerNumber);
             }
-            answer = player2.guess();
-            if(answer == targetNumber) {
-                player2.setWinner(true);
+            System.out.printf("Ход игрока %s. Введите число: ", player2.getName());
+            player2.setNumber(input.nextInt());
+            playerNumber = player2.getNumber();
+            if(playerNumber == targetNumber) {
+                System.out.printf("%s выиграл\n", player2.getName());
                 break;
-            } else if(answer < targetNumber) {
-                System.out.printf("%s: Число %d меньше загаданного\n", player2.getName(), answer);
+            } else if(playerNumber < targetNumber) {
+                System.out.printf("%s: Число %d меньше загаданного\n", player2.getName(), playerNumber);
             } else {
-                System.out.printf("%s: Число %d больше загаданного\n", player2.getName(), answer);
+                System.out.printf("%s: Число %d больше загаданного\n", player2.getName(), playerNumber);
             }
         }
     }

@@ -11,16 +11,10 @@ public class GuessNumberTest {
         String repeat;
         do {
             game.start();
-            if(player1.getWinner()) {
-                System.out.printf("Игрок %s победил\n", player1.getName());
-            } else {
-                System.out.printf("Игрок %s победил\n", player2.getName());
-            }
             do {
                 System.out.print("Хотите повторить игру? [yes/no]: ");
                 repeat = input.nextLine().toLowerCase();
-            } while(!repeat.equals("yes") &&
-                    !repeat.equals("no"));
+            } while(!repeat.equals("yes") && !repeat.equals("no"));
         } while(repeat.equals("yes"));
         input.close();
     }
