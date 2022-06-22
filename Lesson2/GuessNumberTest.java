@@ -8,7 +8,7 @@ public class GuessNumberTest {
         System.out.print("Введите имя второго игрока: ");
         Player player2 = new Player(input.nextLine());
         GuessNumber game = new GuessNumber(player1, player2);
-        String repeat;
+        String repeat = "no";
         do {
             game.start();
             do {
