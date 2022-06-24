@@ -1,6 +1,8 @@
+package com.startjava.lesson_1.ultimate;
+
 public class MyFirstGame {
     public static void main(String[] args) {
-        int guess = (int) System.currentTimeMillis() % 100 + 1;
+        double guess = System.currentTimeMillis() % 100 + 1;
         int max = 100;
         int min = 0;
         int answer = max - ((max - min) / 2);
