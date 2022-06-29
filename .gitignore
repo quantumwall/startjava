@@ -2,3 +2,6 @@
 *.bak*
 *.swp
 out
+/build.xml
+/manifest.mf
+/nbproject/
