@@ -17,20 +17,31 @@ public class ArrayTheme {
         len = 10;
         numbers = new int[len];
         int multiply = 1;
+        boolean zeroOrNine = false;
         for(int i = 0; i < len; i++) {
             int number = generateRandomNumber(0, 10);
             numbers[i] = number;
-            multiply *= number > 0 && number < 9 ? number : 1;
+            if(number > 0 && number < 9) {
+                multiply *= number;
+                System.out.print((i < len - 1) ? number + " * " : number + " = ");
+            } else {
+                zeroOrNine = true;
+            }
         }
-        printIntArray(numbers);
-        System.out.printf("Multiply %d\n", multiply);
+        System.out.println(multiply);
+        if(zeroOrNine) {
+            for(int i = 0; i < len; i++) {
+                if(numbers[i] == 0 || numbers[i] == 9) {
+                    System.out.printf("Число %d - индекс %d\n", numbers[i], i);
+                }
+            }
+        }
         
-
         System.out.println("\n3. Удаление элементов массива");
         len = 15;
         double[] dNumbers = new double[len];
         for(int i = 0; i < len; i++) {
-            dNumbers[i] = Math.random();
+            dNumbers[i] = generateRandomNumber(0.0, 101.0);
         }
         printDoubleArray(dNumbers);
         double middleCellValue = dNumbers[len / 2];
@@ -113,28 +124,28 @@ public class ArrayTheme {
         printStringArray(newArray);
     }
 
-    private static void printIntArray(int[] numbers) {
+    public static void printIntArray(int[] numbers) {
         for(int number : numbers) {
             System.out.printf("%d ", number);
         }
         System.out.println();
     }
 
-    private static void printDoubleArray(double[] dNumbers) {
+    public static void printDoubleArray(double[] dNumbers) {
         for(double dNumber : dNumbers) {
             System.out.printf("%.3f ", dNumber);
         }
         System.out.println();
     }
     
-    private static void printStringArray(String[] strings) {
+    public static void printStringArray(String[] strings) {
         for(String string : strings) {
             System.out.printf("%s ", string);
         }
         System.out.println();
     }
 
-    private static void sortArray(int[] array) {
+    public static void sortArray(int[] array) {
         int len = array.length;
         for(int i = 0; i < len - 1; i++) {
             for(int k = 0; k < len - i - 1; k++) {
@@ -147,7 +158,7 @@ public class ArrayTheme {
         }
     }
 
-    private static boolean isNumberInArray(int number, int[] array) {
+    public static boolean isNumberInArray(int number, int[] array) {
         for(int num : array) {
             if(num == number) {
                 return true;
@@ -156,7 +167,11 @@ public class ArrayTheme {
         return false;
     }
     
-    private static int generateRandomNumber(int from, int to) {
+    public static int generateRandomNumber(int from, int to) {
         return from + (int) (Math.random() * (to - from));
+    }
+    
+    public static double generateRandomNumber(double from, double to) {
+        return from + Math.random() * to - from;
     }
 }
