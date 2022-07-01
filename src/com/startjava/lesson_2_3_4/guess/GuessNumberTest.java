@@ -13,8 +13,18 @@ public class GuessNumberTest {
         String repeat = "no";
         do {
             game.start();
+            int[] player1Numbers = player1.getNumbers();
+            int[] player2Numbers = player2.getNumbers();
+            System.out.printf("Ответы игрока %s\n", player1.getName());
+            for(int num : player1Numbers) {
+                System.out.printf("%d ", num);
+            }
+            System.out.printf("\nОтветы игрока %s\n", player2.getName());
+            for(int num : player2Numbers) {
+                System.out.printf("%d ", num);
+            }
             do {
-                System.out.print("Хотите повторить игру? [yes/no]: ");
+                System.out.print("\nХотите повторить игру? [yes/no]: ");
                 repeat = input.nextLine().toLowerCase();
             } while(!repeat.equals("yes") && !repeat.equals("no"));
         } while(repeat.equals("yes"));

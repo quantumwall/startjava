@@ -8,14 +8,11 @@ public class CalculatorTest {
         Scanner input = new Scanner(System.in);
         Calculator calculator = new Calculator();
         do {
-            System.out.print("Введите первое число: ");
-            calculator.setNum1(input.nextInt());
-            input.nextLine();
-            System.out.print("Введите знак математической операции: ");
-            calculator.setSign(input.nextLine().charAt(0));
-            System.out.print("Введите второе число: ");
-            calculator.setNum2(input.nextInt());
-            input.nextLine();
+            System.out.print("Введите математическое выражение: ");
+            String[] statement = input.nextLine().split(" ");
+            calculator.setNum1(Integer.parseInt(statement[0]));
+            calculator.setSign(statement[1].charAt(0));
+            calculator.setNum2(Integer.parseInt(statement[2]));
             double result = calculator.calculate();
             System.out.printf("Результат вычислений: %.1f\n", result);
             do {

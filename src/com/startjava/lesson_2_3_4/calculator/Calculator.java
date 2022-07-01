@@ -44,10 +44,7 @@ public class Calculator {
             case '%':
                 return num1 % num2;
             case '^':
-                result = 1;
-                for(int i = 0; i < num2; i++) {
-                    result *= num1;
-                }
+                return Math.pow(num1, num2);
         }
         return result;
     }
