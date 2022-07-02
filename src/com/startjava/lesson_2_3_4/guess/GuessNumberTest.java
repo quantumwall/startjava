@@ -17,13 +17,6 @@ public class GuessNumberTest {
         String repeat = "no";
         do {
             game.start();
-            for(Player player : players) {
-                System.out.printf("Ответы игрока %s\n", player.getName());
-                for(int num : player.getNumbers()) {
-                    System.out.printf("%d ", num);
-                }
-                System.out.println();
-            }
             do {
                 System.out.print("\nХотите повторить игру? [yes/no]: ");
                 repeat = input.nextLine().toLowerCase();
