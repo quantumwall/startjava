@@ -20,11 +20,14 @@ public class GuessNumber {
         int maxAttempts = 9;
         int playerNumber;
         boolean winner = false;
-        System.out.println("У каждого игрока есть 10 попыток, чтобы угадать число");
+        System.out.printf("У каждого игрока есть %d попыток, чтобы угадать число\n", maxAttempts + 1);
         Scanner input = new Scanner(System.in);
         targetNumber = (int) (Math.random() * 100 + 1);
         while(true) {
-            if(attempt > maxAttempts || winner) {
+            if(winner) {
+                break;
+            }
+            if(attempt > maxAttempts) {
                 System.out.println("Попытки закончились. Game over.");
                 break;
             }
@@ -58,7 +61,6 @@ public class GuessNumber {
             player.resetNumbers();
             player.setAttempt(0);
         }
-        showGameResult();
     }
     
     private void showGameResult() {
