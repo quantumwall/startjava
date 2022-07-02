@@ -58,6 +58,7 @@ public class GuessNumber {
             player.resetNumbers();
             player.setAttempt(0);
         }
+        showGameResult();
     }
     
     private void showGameResult() {
