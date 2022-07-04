@@ -20,7 +20,10 @@ public class Player {
         this.attempt = attempt;
     }
     
-    public void setNumber(int number, int index) {
+    public void setNumber(int number, int index) throws Exception {
+        if(number <= 0 && number > 100) {
+            throw new Exception("Число из недоспустимого диапазона значений");
+        }
         numbers[index] = number;
     }
     

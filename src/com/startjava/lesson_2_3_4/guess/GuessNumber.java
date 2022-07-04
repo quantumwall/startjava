@@ -33,19 +33,19 @@ public class GuessNumber {
             }
             for(Player player : players) {
                 System.out.printf("Ход игрока %s. Введите число: ", player.getName());
-                player.setNumber(input.nextInt(), attempt);
-                playerNumber = player.getNumber(attempt);
-                if(playerNumber == targetNumber) {
-                    System.out.printf("Игрок %s угадал число с %d попытки\n", player.getName(), attempt + 1);
-                    player.setAttempt(attempt + 1);
-                    winner = true;
-                    break;
-                } else if(playerNumber < targetNumber) {
-                    System.out.printf("%s: Число %d меньше загаданного\n", player.getName(), playerNumber);
-                    player.setAttempt(attempt + 1);
-                } else {
-                    System.out.printf("%s: Число %d больше загаданного\n", player.getName(), playerNumber);
-                    player.setAttempt(attempt + 1);
+                try {
+                    player.setNumber(input.nextInt(), attempt);
+                    playerNumber = player.getNumber(attempt);
+                    if(playerNumber == targetNumber) {
+                        System.out.printf("Игрок %s угадал число с %d попытки\n", player.getName(), attempt + 1);
+                        player.setAttempt(attempt + 1);
+                        winner = true;
+                        break;
+                    }
+                    System.out.printf("%s: число %d %s загаданного\n", player.getName(),
+                        playerNumber, playerNumber < targetNumber ? "меньше" : "больше"); 
+                } catch(Exception e) {
+                    System.out.println(e);
                 }
                 if(attempt + 1 > maxAttempts) {
                     System.out.printf("У игрока %s закончились попытки\n", player.getName());
