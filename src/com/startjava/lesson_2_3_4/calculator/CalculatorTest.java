@@ -9,12 +9,8 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         do {
             System.out.print("Введите математическое выражение: ");
-            String[] expression = input.nextLine().split(" ");
-            calculator.setNum1(Integer.parseInt(expression[0]));
-            calculator.setSign(expression[1].charAt(0));
-            calculator.setNum2(Integer.parseInt(expression[2]));
-            double result = calculator.calculate();
-            System.out.printf("Результат вычислений: %.1f\n", result);
+            System.out.printf("Результат вычислений: %.1f\n", 
+                    calculator.calculate(input.nextLine()));
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 repeat = input.nextLine().toLowerCase();

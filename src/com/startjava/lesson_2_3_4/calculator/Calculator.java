@@ -6,32 +6,11 @@ public class Calculator {
     private int num2;
     private char sign;
     
-    public void setNum1(int num1) {
-        this.num1 = num1;
-    }
-
-    public int getNum1() {
-        return num1;
-    }
-
-    public void setNum2(int num2) {
-        this.num2 = num2;
-    }
-
-    public int getNum2() {
-        return num2;
-    }
-
-    public void setSign(char sign) {
-        this.sign = sign;
-    }
-
-    public char getSign() {
-        return sign;
-    }
-
-    public double calculate() {
-        double result = 0;
+    public double calculate(String exp) {
+        String[] expArr = exp.split(" ");
+        num1 = Integer.parseInt(expArr[0]);
+        num2 = Integer.parseInt(expArr[2]);
+        sign = expArr[1].charAt(0);
         switch(sign) {
             case '+':
                 return num1 + num2;
@@ -46,6 +25,6 @@ public class Calculator {
             case '^':
                 return Math.pow(num1, num2);
         }
-        return result;
+        return 0;
     }
 }
