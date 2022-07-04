@@ -4,10 +4,10 @@ public class Calculator {
 
     public static int calculate(String exp) 
             throws ArrayIndexOutOfBoundsException, NumberFormatException {
-        String[] expArr = exp.split(" ");
-        int num1 = Integer.parseInt(expArr[0]);
-        int num2 = Integer.parseInt(expArr[2]);
-        char sign = expArr[1].charAt(0);
+        String[] partsExp = exp.split(" ");
+        int num1 = Integer.parseInt(partsExp[0]);
+        int num2 = Integer.parseInt(partsExp[2]);
+        char sign = partsExp[1].charAt(0);
         return switch(sign) {
                 case '+' -> num1 + num2;
                 case '-' -> num1 - num2;
