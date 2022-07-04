@@ -6,11 +6,24 @@ public class CalculatorTest {
     public static void main(String[] args) {
         String repeat;
         Scanner input = new Scanner(System.in);
-        Calculator calculator = new Calculator();
         do {
-            System.out.print("Введите математическое выражение: ");
-            System.out.printf("Результат вычислений: %.1f\n", 
-                    calculator.calculate(input.nextLine()));
+            do {
+                try {
+                    System.out.print("Введите математическое выражение: ");
+                    System.out.printf("Результат вычислений: %d\n", Calculator.calculate(input.nextLine()));
+                } catch(NumberFormatException e) {
+                    System.out.println("Ошибка! Должны быть введены целые числа");
+                    continue;
+                } catch(ArithmeticException e) {
+                    System.out.println("Ошибка! " + e.getMessage());
+                    continue;
+                } catch(ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Ошибка! Введены не все члены математического выражения");
+                    System.out.println("Формат: число1 знак число2");
+                    continue;
+                }
+                break;
+            } while(true);
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 repeat = input.nextLine().toLowerCase();

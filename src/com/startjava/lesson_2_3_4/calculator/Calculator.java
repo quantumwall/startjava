@@ -1,30 +1,27 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    
-    private int num1;
-    private int num2;
-    private char sign;
-    
-    public double calculate(String exp) {
-        String[] expArr = exp.split(" ");
-        num1 = Integer.parseInt(expArr[0]);
-        num2 = Integer.parseInt(expArr[2]);
-        sign = expArr[1].charAt(0);
-        switch(sign) {
-            case '+':
-                return num1 + num2;
-            case '-':
-                return num1 - num2;
-            case '*':
-                return num1 * num2;
-            case '/':
-                return num1 / num2;
-            case '%':
-                return num1 % num2;
-            case '^':
-                return Math.pow(num1, num2);
-        }
-        return 0;
+
+    public static int calculate(String exp) 
+            throws ArrayIndexOutOfBoundsException, NumberFormatException {
+        String[] partsExp = exp.split(" ");
+        int num1 = Integer.parseInt(partsExp[0]);
+        int num2 = Integer.parseInt(partsExp[2]);
+        char sign = partsExp[1].charAt(0);
+        return switch(sign) {
+                case '+' -> num1 + num2;
+                case '-' -> num1 - num2;
+                case '*' -> num1 * num2;
+                case '/' -> {
+                    if(num2 == 0) {
+                        throw new ArithmeticException("Деление на 0!");
+                    }
+                    yield num1 / num2;
+                }
+                case '%' -> num1 % num2;
+                case '^' -> (int) Math.pow(num1, num2);
+                default -> throw new ArithmeticException("Некорректный знак " + 
+                        "математической операции\n+ - * / % ^");
+            };
     }
 }
