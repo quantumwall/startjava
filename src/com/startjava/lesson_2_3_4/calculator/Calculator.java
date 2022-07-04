@@ -2,7 +2,12 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    public static int calculate(int num1, char sign, int num2) {
+    public static int calculate(String exp) 
+            throws ArrayIndexOutOfBoundsException, NumberFormatException {
+        String[] expArr = exp.split(" ");
+        int num1 = Integer.parseInt(expArr[0]);
+        int num2 = Integer.parseInt(expArr[2]);
+        char sign = expArr[1].charAt(0);
         return switch(sign) {
                 case '+' -> num1 + num2;
                 case '-' -> num1 - num2;

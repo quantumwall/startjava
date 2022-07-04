@@ -7,18 +7,10 @@ public class CalculatorTest {
         String repeat;
         Scanner input = new Scanner(System.in);
         do {
-            String[] expression;
-            int num1;
-            int num2;
-            char sign;
             do {
                 try {
                     System.out.print("Введите математическое выражение: ");
-                    expression = input.nextLine().split(" ");
-                    num1 = Integer.parseInt(expression[0]);
-                    num2 = Integer.parseInt(expression[2]);
-                    sign = expression[1].charAt(0);
-                    System.out.printf("Результат вычислений: %d\n", Calculator.calculate(num1, sign, num2));
+                    System.out.printf("Результат вычислений: %d\n", Calculator.calculate(input.nextLine()));
                 } catch(NumberFormatException e) {
                     System.out.println("Ошибка! Должны быть введены целые числа");
                     continue;
