@@ -64,7 +64,7 @@ public class ArrayTheme {
         for(int i = 0; i < len; i++) {
             for(int j = 0; j < len; j++) {
                 if(num == intArr[j]) {
-                    num = generatRandNum(60, 101);
+                    num = generateRandNum(60, 101);
                     j = -1;
                 }
             }
@@ -72,7 +72,7 @@ public class ArrayTheme {
         }
         sortArr(intArr);
         for(int i = 1; i <= len; i++) {
-            System.out.print(i % 10 == 0 ? intArr[i - 1] + "\n" : intArr[i - 1] + " ");
+            System.out.print(intArr[i - 1] + (i % 10 == 0 ? "\n" : " "));
         }
 
         System.out.println("\n6. Сдвиг элементов массива");
@@ -144,7 +144,7 @@ public class ArrayTheme {
         }
     }
     
-    private static int generatRandNum(int from, int to) {
+    private static int generateRandNum(int from, int to) {
         return from + (int) (Math.random() * (to - from));
     }
 }
