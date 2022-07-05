@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class GuessNumber {
     
-    private int targetNumber;
     private Player[] players;
      
     public GuessNumber(Player... players) {
@@ -22,7 +21,7 @@ public class GuessNumber {
         boolean winner = false;
         System.out.printf("У каждого игрока есть %d попыток, чтобы угадать число\n", maxAttempts + 1);
         Scanner input = new Scanner(System.in);
-        targetNumber = (int) (Math.random() * 100 + 1);
+        int targetNumber = (int) (Math.random() * 100 + 1);
         while(true) {
             if(winner) {
                 break;
