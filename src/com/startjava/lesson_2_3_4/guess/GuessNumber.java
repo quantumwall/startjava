@@ -13,7 +13,7 @@ public class GuessNumber {
     }
 
     public void start() {
-        prepareNewGame();
+        initGame(player1, player2);
         System.out.println("У каждого игрока есть 10 попыток, чтобы угадать число");
         Scanner input = new Scanner(System.in);
         int targetNumber = (int) (Math.random() * 100 + 1);
@@ -61,26 +61,23 @@ public class GuessNumber {
             }
             attempt++;
         }
-        showGameResult();
+        showGameResult(player1, player2);
     }
     
-    private void prepareNewGame() {
-        player1.resetNumbers();
-        player2.resetNumbers();
-        player1.setAttempt(0);
-        player2.setAttempt(0);
+    private void initGame(Player... players) {
+        for(Player player : players) {
+            player.resetNumbers();
+            player.setAttempt(0);
+        }
     }
     
-    private void showGameResult() {
-        int[] player1Numbers = player1.getNumbers();
-        int[] player2Numbers = player2.getNumbers();
-        System.out.printf("Ответы игрока %s: ", player1.getName());
-        for(int num : player1Numbers) {
-            System.out.printf("%d ", num);
+    private void showGameResult(Player... players) {
+        for(Player player : players) {
+            System.out.printf("\nОтветы игрока %s: ", player.getName());
+            for(int num : player.getNumbers()) {
+                System.out.printf("%d ", num);
+            }
         }
-        System.out.printf("\nОтветы игрока %s: ", player2.getName());
-        for(int num : player2Numbers) {
-            System.out.printf("%d ", num);
-        }
+        
     }
 }
