@@ -14,7 +14,7 @@ public class GuessNumber {
     }
 
     public void start() {
-        prepareNewGame();
+        init();
         int attempt = 0;
         int maxAttempts = 9;
         int playerNumber;
@@ -55,7 +55,7 @@ public class GuessNumber {
         showGameResult();
     }
     
-    private void prepareNewGame() {
+    private void init() {
         for(Player player : players) {
             player.resetNumbers();
             player.setAttempt(0);
