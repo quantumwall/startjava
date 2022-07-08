@@ -20,6 +20,10 @@ public class Player {
         this.attempt = attempt;
     }
     
+    public int getAttempt() {
+        return attempt;
+    }
+    
     public void setNumber(int number, int index) {
         numbers[index] = number;
     }

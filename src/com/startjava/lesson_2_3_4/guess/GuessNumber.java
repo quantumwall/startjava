@@ -6,6 +6,7 @@ public class GuessNumber {
     
     private final Player player1;
     private final Player player2;
+    private int targetNumber;
      
     public GuessNumber(Player p1, Player p2) {
         player1 = p1;
@@ -16,50 +17,19 @@ public class GuessNumber {
         initGame(player1, player2);
         System.out.println("У каждого игрока есть 10 попыток, чтобы угадать число");
         Scanner input = new Scanner(System.in);
-        int targetNumber = (int) (Math.random() * 100 + 1);
+        targetNumber = (int) (Math.random() * 100 + 1);
         int playerNumber;
-        int attempt = 0;
         while(true) {
-            if(attempt == 10) {
+            if(player1.getAttempt() == 10) {
                 System.out.println("Попытки закончились. Game over.");
                 break;
             }
-            System.out.printf("Ход игрока %s. Введите число: ", player1.getName());
-            player1.setNumber(input.nextInt(), attempt);
-            playerNumber = player1.getNumber(attempt);
-            if(playerNumber == targetNumber) {
-                System.out.printf("Игрок %s угадал число с %d попытки\n", player1.getName(), attempt + 1);
-                player1.setAttempt(attempt + 1);
+            if(isGuess(player1, input)) {
                 break;
-            } else if(playerNumber < targetNumber) {
-                System.out.printf("%s: Число %d меньше загаданного\n", player1.getName(), playerNumber);
-                player1.setAttempt(attempt + 1);
-            } else {
-                System.out.printf("%s: Число %d больше загаданного\n", player1.getName(), playerNumber);
-                player1.setAttempt(attempt + 1);
             }
-            if(attempt + 1 > 9) {
-                System.out.printf("У игрока %s закончились попытки\n", player1.getName());
-            }
-            
-            System.out.printf("Ход игрока %s. Введите число: ", player2.getName());
-            player2.setNumber(input.nextInt(), attempt);
-            playerNumber = player2.getNumber(attempt);
-            if(playerNumber == targetNumber) {
-                System.out.printf("Игрок %s угадал число с %d попытки\n", player2.getName(), attempt + 1);
-                player2.setAttempt(attempt + 1);
+            if(isGuess(player2, input)) {
                 break;
-            } else if(playerNumber < targetNumber) {
-                System.out.printf("%s: Число %d меньше загаданного\n", player2.getName(), playerNumber);
-                player2.setAttempt(attempt + 1);
-            } else {
-                System.out.printf("%s: Число %d больше загаданного\n", player2.getName(), playerNumber);
-                player2.setAttempt(attempt + 1);
             }
-            if(attempt + 1 > 9) {
-                System.out.printf("У игрока %s закончились попытки\n", player2.getName());
-            }
-            attempt++;
         }
         showGameResult(player1, player2);
     }
@@ -71,6 +41,25 @@ public class GuessNumber {
         }
     }
     
+    private boolean isGuess(Player player, Scanner input) {
+        System.out.printf("Ход игрока %s. Введите число: ", player.getName());
+        player.setNumber(input.nextInt(), player.getAttempt());
+        int playerNumber = player.getNumber(player.getAttempt());
+        player.setAttempt(player.getAttempt() + 1);
+        if(playerNumber == targetNumber) {
+            System.out.printf("Игрок %s угадал число с %d попытки\n", player.getName(), player.getAttempt());
+            return true;
+        } else if(playerNumber < targetNumber) {
+            System.out.printf("%s: Число %d меньше загаданного\n", player.getName(), playerNumber);
+        } else {
+            System.out.printf("%s: Число %d больше загаданного\n", player.getName(), playerNumber);
+        }
+        if(player.getAttempt() + 1 > 9) {
+            System.out.printf("У игрока %s закончились попытки\n", player.getName());
+        }
+        return false;
+    }
+    
     private void showGameResult(Player... players) {
         for(Player player : players) {
             System.out.printf("\nОтветы игрока %s: ", player.getName());
@@ -78,6 +67,5 @@ public class GuessNumber {
                 System.out.printf("%d ", num);
             }
         }
-        
     }
 }
