@@ -14,8 +14,11 @@ public class Bookshelf {
     }
     
     public void addBook(String bookData) {
+        //TODO
+        //make two kind of exceptions
+        //one if not all parts was entered
+        //two if free space was ended
         String[] bookParts = bookData.split(", ");
-        System.out.println(Arrays.toString(bookParts));
         String author = bookParts[0];
         String title = bookParts[1];
         int year = Integer.parseInt(bookParts[2]);
@@ -23,11 +26,23 @@ public class Bookshelf {
     }
     
     
-    public void deleteBook() {
-        
+    public void deleteBook(String title) {
+        int index = -2;
+        for(int i = 0; i < booksOnShelf; i++) {
+            if(books[i].getTitle().equalsIgnoreCase(title)) {
+                index = i;
+                break;
+            }
+        }
+        System.arraycopy(books, index + 1, books, index, booksOnShelf-- - index);
     }
     
     public String searchBook(String title) {
+        for(int i = 0; i <= booksOnShelf; i++) {
+            if(books[i].getTitle().equalsIgnoreCase(title)) {
+                return books[i].toString();
+            }
+        }
         return null;
     }
     
