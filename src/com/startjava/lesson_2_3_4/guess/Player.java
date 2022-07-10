@@ -17,19 +17,19 @@ public class Player {
     }
     
     public void setAttempt(int attempt) {
-        this.attempt = attempt;
+        this.attempt = attempt >= 0 || attempt < numbers.length ? attempt : 0;
     }
     
     public int getAttempt() {
         return attempt;
     }
     
-    public void setNumber(int number, int index) {
-        numbers[index] = number;
+    public void addNumber(int number) {
+        numbers[attempt++] = number;
     }
     
-    public int getNumber(int index) {
-        return numbers[index];
+    public int getNumber() {
+        return numbers[attempt - 1];
     }
     
     public int[] getNumbers() {
