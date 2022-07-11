@@ -18,15 +18,11 @@ public class GuessNumber {
         System.out.println("У каждого игрока есть 10 попыток, чтобы угадать число");
         Scanner input = new Scanner(System.in);
         targetNumber = (int) (Math.random() * 100 + 1);
-        while(true) {
-            if(player1.getAttempt() == 10) {
-                System.out.println("Попытки закончились. Game over.");
-                break;
-            }
+        do {
             if(isGuessed(player1, input) || isGuessed(player2, input)) {
                 break;
             }
-        }
+        } while(player2.getAttempt() < 10);
         printGameResult(player1, player2);
     }
     
