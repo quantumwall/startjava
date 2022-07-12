@@ -29,7 +29,6 @@ public class Bookshelf {
         
     }
     
-    
     public void deleteBook(String title) {
         int delIndex = -1;
         for(int i = 0; i < booksOnShelf; i++) {
