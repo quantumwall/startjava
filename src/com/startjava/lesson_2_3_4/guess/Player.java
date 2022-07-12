@@ -17,18 +17,19 @@ public class Player {
     }
     
     public void setAttempt(int attempt) {
-        this.attempt = attempt;
+        this.attempt = attempt >= 0 || attempt < numbers.length ? attempt : 0;
     }
     
-    public void setNumber(int number, int index) throws Exception {
-        if(number <= 0 && number > 100) {
-            throw new Exception("Число из недоспустимого диапазона значений");
-        }
-        numbers[index] = number;
+    public int getAttempt() {
+        return attempt;
     }
     
-    public int getNumber(int index) {
-        return numbers[index];
+    public void addNumber(int number) {
+        numbers[attempt++] = number;
+    }
+    
+    public int getNumber() {
+        return numbers[attempt - 1];
     }
     
     public int[] getNumbers() {
