@@ -14,27 +14,32 @@ public class Bookshelf {
     }
     
     public void addBook(String bookData) {
-        //TODO
-        //make two kind of exceptions
-        //one if not all parts was entered
-        //two if free space was ended
-        String[] bookParts = bookData.split(", ");
-        String author = bookParts[0];
-        String title = bookParts[1];
-        int year = Integer.parseInt(bookParts[2]);
-        books[booksOnShelf++] = new Book(author, title, year);
+        if(booksOnShelf >= 10) {
+            throw new ArrayIndexOutOfBoundsException("Не осталось места на полке");
+        }
+        try {
+            String[] bookParts = bookData.split(", ");
+            String author = bookParts[0];
+            String title = bookParts[1];
+            int year = Integer.parseInt(bookParts[2]);
+            books[booksOnShelf++] = new Book(author, title, year);
+        } catch(ArrayIndexOutOfBoundsException e) {
+            throw new ArrayIndexOutOfBoundsException("Введены не все данные для добавления книги");
+        }
+        
     }
     
     
     public void deleteBook(String title) {
-        int index = -2;
+        int delIndex = -1;
         for(int i = 0; i < booksOnShelf; i++) {
             if(books[i].getTitle().equalsIgnoreCase(title)) {
-                index = i;
+                delIndex = i;
                 break;
             }
         }
-        System.arraycopy(books, index + 1, books, index, booksOnShelf-- - index);
+        System.arraycopy(books, delIndex + 1, books, delIndex, --booksOnShelf - delIndex);
+        Arrays.fill(books, booksOnShelf, books.length, null);
     }
     
     public String searchBook(String title) {

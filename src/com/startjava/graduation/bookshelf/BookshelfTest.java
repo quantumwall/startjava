@@ -47,7 +47,7 @@ public class BookshelfTest {
                     } catch(NumberFormatException e) {
                         System.out.println("Год публикации должен быть числом");
                     } catch(ArrayIndexOutOfBoundsException e) {
-                        System.out.println("На полке не осталось свободного места");
+                        System.out.println(e.getMessage());
                     }
                 }
                 case "2" -> {
