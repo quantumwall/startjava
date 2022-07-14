@@ -1,65 +1,52 @@
 package com.startjava.graduation.bookshelf;
 
-import java.util.Arrays;
-
 public class Bookshelf {
     
-    private int booksOnShelf;
-    private Book[] books;
-    private StringBuilder sb = new StringBuilder();
+    private int count;
+    private Book[] books = new Book[10];
     
-    public Bookshelf() {
-        booksOnShelf = 0;
-        books = new Book[10];
+    public void addBook(Book book) throws Exception {
+        if(count >= 10) {
+            throw new Exception("Не осталось места на полке");
+        }
+        books[count++] = book;
     }
     
-    public void addBook(String bookData) {
-        if(booksOnShelf >= 10) {
-            throw new ArrayIndexOutOfBoundsException("Не осталось места на полке");
+    public void deleteBook(String title) throws Exception {
+        if(count <= 0) {
+            throw new Exception("Полка пуста");
         }
-        try {
-            String[] bookParts = bookData.split(", ");
-            String author = bookParts[0];
-            String title = bookParts[1];
-            int year = Integer.parseInt(bookParts[2]);
-            books[booksOnShelf++] = new Book(author, title, year);
-        } catch(ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException("Введены не все данные для добавления книги");
-        }
-        
-    }
-    
-    public void deleteBook(String title) {
         int delIndex = -1;
-        for(int i = 0; i < booksOnShelf; i++) {
+        for(int i = 0; i < count; i++) {
             if(books[i].getTitle().equalsIgnoreCase(title)) {
                 delIndex = i;
                 break;
             }
         }
-        System.arraycopy(books, delIndex + 1, books, delIndex, --booksOnShelf - delIndex);
-        Arrays.fill(books, booksOnShelf, books.length, null);
+        System.arraycopy(books, delIndex + 1, books, delIndex, count - 1 - delIndex);
+        books[--count] = null;
     }
     
-    public String searchBook(String title) {
-        for(int i = 0; i <= booksOnShelf; i++) {
+    public Book searchBook(String title) {
+        for(int i = 0; i < count; i++) {
             if(books[i].getTitle().equalsIgnoreCase(title)) {
-                return books[i].toString();
+                return books[i];
             }
         }
         return null;
     }
     
-    public int booksOnShelf() {
-        return booksOnShelf;
+    public int getCount() {
+        return count;
     }
     
-    public int freeSpace() {
-        return books.length - booksOnShelf;
+    public int getFreeSpace() {
+        return books.length - count;
     }
     
     @Override
     public String toString() {
+        var sb = new StringBuilder();
         sb.delete(0, sb.length());
         for(Book book : books) {
             sb.append("<" + (book != null ? book : " ") + ">\n");

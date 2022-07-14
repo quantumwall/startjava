@@ -2,9 +2,9 @@ package com.startjava.graduation.bookshelf;
 
 public class Book {
     
-    private String author;
-    private String title;
-    private int year;
+    private final String author;
+    private final String title;
+    private final int year;
     
     public Book(String author, String title, int year) {
         this.author = author;
@@ -12,16 +12,8 @@ public class Book {
         this.year = year;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public int getYear() {
-        return year;
     }
     
     @Override
