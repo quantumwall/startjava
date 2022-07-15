@@ -7,7 +7,7 @@ public class BookshelfTest {
     public static void main(String[] args) {
         var input = new Scanner(System.in);
         var bookshelf = new Bookshelf();
-        var menuItem = "";
+        var menuItem = 0;
         do {
             System.out.println("""
                                \n1. Добавить книгу
@@ -19,9 +19,10 @@ public class BookshelfTest {
                                """);
             System.out.println(bookshelf);
             System.out.print("Выберите пункт меню: "); 
-            menuItem = input.nextLine();
+            menuItem = input.nextInt();
+            input.nextLine();
             switch(menuItem) {
-                case "1" -> {
+                case 1 -> {
                     System.out.println("""
                                        \nДобавить книгу
                                        <Автор>, <Название книги>, <Год издания> Enter
@@ -38,11 +39,9 @@ public class BookshelfTest {
                         System.out.println("Год издания должен быть строкой");
                     } catch(ArrayIndexOutOfBoundsException e) {
                         System.out.println("Введены не все данные для добавления книги");
-                    } catch(Exception e) {
-                        System.out.println(e.getMessage());
                     }
                 }
-                case "2" -> {
+                case 2 -> {
                     System.out.println("""
                                        \nУдалить книгу
                                        <Название книги> Enter
@@ -52,15 +51,9 @@ public class BookshelfTest {
                     if(subMenuItem.equals("0")) {
                         break;
                     }
-                    try {
-                        bookshelf.deleteBook(subMenuItem);
-                    } catch(ArrayIndexOutOfBoundsException e) {
-                        System.out.println("Книга не найдена");
-                    } catch(Exception e) {
-                        System.out.println(e.getMessage());
-                    }
+                    bookshelf.deleteBook(subMenuItem);
                 }
-                case "3" -> {
+                case 3 -> {
                     System.out.println("""
                                        \nНайти книгу
                                        <Название книги> Enter
@@ -72,10 +65,10 @@ public class BookshelfTest {
                     }
                     System.out.println(Objects.requireNonNullElse(bookshelf.searchBook(subMenuItem), "Книга не найдена"));
                 }
-                case "4" -> System.out.printf("Книг на полке - %d\n", bookshelf.getCount());
-                case "5" -> System.out.printf("Свободного места на полке - %d\n", bookshelf.getFreeSpace());
+                case 4 -> System.out.printf("Книг на полке - %d\n", bookshelf.getCount());
+                case 5 -> System.out.printf("Свободного места на полке - %d\n", bookshelf.getFreeSpace());
             };
-        } while(!menuItem.equals("0"));
+        } while(menuItem != 0);
         input.close();
     }
 }

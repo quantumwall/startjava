@@ -5,16 +5,18 @@ public class Bookshelf {
     private int count;
     private Book[] books = new Book[10];
     
-    public void addBook(Book book) throws Exception {
+    public void addBook(Book book) {
         if(count >= 10) {
-            throw new Exception("Не осталось места на полке");
+            System.out.println("Не осталось места на полке");
+            return;
         }
         books[count++] = book;
     }
     
-    public void deleteBook(String title) throws Exception {
+    public void deleteBook(String title) {
         if(count <= 0) {
-            throw new Exception("Полка пуста");
+            System.out.println("Полка пуста");
+            return;
         }
         int delIndex = -1;
         for(int i = 0; i < count; i++) {
@@ -22,6 +24,10 @@ public class Bookshelf {
                 delIndex = i;
                 break;
             }
+        }
+        if(delIndex < 0) {
+            System.out.println("Книга не найдена");
+            return;
         }
         System.arraycopy(books, delIndex + 1, books, delIndex, count - 1 - delIndex);
         books[--count] = null;
